@@ -16,7 +16,7 @@ namespace M120Projekt
             APIDemo.DemoARead();
             APIDemo.DemoAUpdate();
             APIDemo.DemoARead();
-            APIDemo.DemoADelete();
+            //APIDemo.DemoADelete();
         }
     }
 }
