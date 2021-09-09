@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:M120Projekt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="644" Width="706.161" Closing="Window_Closing">
     <Grid>
-        
+        <local:Gesetzverwaltung HorizontalAlignment="Left" Height="534" Margin="80,69,0,0" VerticalAlignment="Top" Width="494"/>
     </Grid>
 </Window>

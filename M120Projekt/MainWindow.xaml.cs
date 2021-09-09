@@ -18,5 +18,10 @@ namespace M120Projekt
             APIDemo.DemoARead();
             //APIDemo.DemoADelete();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
     }
 }
