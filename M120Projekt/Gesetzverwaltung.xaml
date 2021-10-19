@@ -7,26 +7,17 @@
              mc:Ignorable="d" Height="535.95" Width="444.5">
     <Grid>
 
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="538" Margin="-6,-6,0,0" Stroke="Black" VerticalAlignment="Top" Width="474" RenderTransformOrigin="0.5,0.5">
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="-0.074"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="-0.749"/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="538" Margin="-6,-6,0,0" Stroke="Black" VerticalAlignment="Top" Width="474" />
         <Label Content="Gesetz verwalten" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="103,10,0,0"  FontSize="34"/>
         <Label Content="Titel" HorizontalAlignment="Left" Margin="52,88,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Height="24" Margin="234,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195" FontSize="18" Text="&#xD;&#xA;" TabIndex="1"/>
+        <TextBox x:Name="txtTitel" HorizontalAlignment="Left" Height="24" Margin="234,90,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195" FontSize="18" TabIndex="1" TextChanged="txtTitel_TextChanged"/>
         <Label Content="Behandlungsdatum" HorizontalAlignment="Left" Margin="52,315,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.506,1.118"/>
-        <DatePicker HorizontalAlignment="Left" Margin="234,315,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.903,0.25" Width="195" TabIndex="5" IsTabStop="True"/>
+        <DatePicker x:Name="dpBehandlung" HorizontalAlignment="Left" Margin="234,315,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.903,0.25" Width="195" TabIndex="5" IsTabStop="True" CalendarClosed="dpBehandlung_CalendarClosed"/>
         <Label Content="Beschreibung" HorizontalAlignment="Left" Margin="52,127,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox HorizontalAlignment="Left" Height="66" Margin="234,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195" FontSize="18" Text="&#xA;" TabIndex="2"/>
+        <TextBox x:Name="txtBeschreibung" HorizontalAlignment="Left" Height="66" Margin="234,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195" FontSize="18" TabIndex="2" TextChanged="txtBeschreibung_TextChanged"/>
         <Label Content="Sektor" HorizontalAlignment="Left" Margin="52,204,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Slider HorizontalAlignment="Left" Margin="234,270,0,0" VerticalAlignment="Top" Height="22" Width="195" FontSize="18" TabIndex="4"/>
-        <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="cbSektoren" Margin="234,208,0,298" FontSize="18" Width="195" TabIndex="3">
+        <Slider x:Name="sliLinksRechts" HorizontalAlignment="Left" Margin="234,270,0,0" VerticalAlignment="Top" Height="22" Width="195" FontSize="18" TabIndex="4" ValueChanged="sliLinksRechts_ValueChanged" Value="5"/>
+        <ComboBox x:Name="cbSektor" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="234,208,0,298" FontSize="18" Width="195" TabIndex="3" SelectionChanged="cbSektor_SelectionChanged">
             <ComboBoxItem Content="Klima und Umwelt"/>
             <ComboBoxItem Content="Aussenpolitik"/>
             <ComboBoxItem Content="Innenpolitik"/>
@@ -34,14 +25,15 @@
             <ComboBoxItem Content="Bildung und Forschung"/>
         </ComboBox>
         <Label Content="Links/Rechts" HorizontalAlignment="Left" Margin="52,270,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Button Content="Eingaben löschen" HorizontalAlignment="Left" Margin="52,376,0,0" VerticalAlignment="Top" Width="164" Height="34" FontSize="18" TabIndex="6"/>
-        <Button Content="Bestätigen" HorizontalAlignment="Left" Margin="234,376,0,0" VerticalAlignment="Top" Width="195" Height="34" FontSize="18" TabIndex="7"/>
+        <Button x:Name="btnDeleteContent" Content="Eingaben löschen" HorizontalAlignment="Left" Margin="52,376,0,0" VerticalAlignment="Top" Width="164" Height="34" FontSize="18" TabIndex="6" Click="btnDeleteContent_Click"/>
+        <Button x:Name="btnConfirm" Content="Bestätigen" HorizontalAlignment="Left" Margin="234,376,0,0" VerticalAlignment="Top" Width="195" Height="34" FontSize="18" TabIndex="7" Click="btnConfirm_Click"/>
         <Label Content="Ist mehrheitsfähig?" HorizontalAlignment="Left" Margin="52,424,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <ListBox HorizontalAlignment="Left" Height="23" Margin="234,425,0,0" VerticalAlignment="Top" Width="195" IsEnabled="False" TabIndex="5"/>
-        <Button Content="Gesetz erfassen" HorizontalAlignment="Left" Margin="52,465,0,0" VerticalAlignment="Top" Width="377" Height="34" Grid.RowSpan="2" FontSize="18" TabIndex="8"/>
-        <Label Content="links" HorizontalAlignment="Left" Margin="220,244,0,0" VerticalAlignment="Top"/>
-        <Label Content="mitte" HorizontalAlignment="Left" Margin="304,244,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblMehrheit" Content="" HorizontalAlignment="Center" Margin="100,425,10,0" FontSize="18"/>
+        <Button x:Name="btnErfassen" Content="Gesetz erfassen" HorizontalAlignment="Left" Margin="52,465,0,0" VerticalAlignment="Top" Width="377" Height="34" Grid.RowSpan="2" FontSize="18" TabIndex="8" Click="btnErfassen_Click"/>
+        <Label Content="links" HorizontalAlignment="Left" Margin="234,244,0,0" VerticalAlignment="Top"/>
+        <Label Content="mitte" HorizontalAlignment="Left" Margin="312,244,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.395,0.577"/>
         <Label Content="rechts" HorizontalAlignment="Left" Margin="395,244,0,0" VerticalAlignment="Top"/>
-        <Image HorizontalAlignment="Left" Height="27" Margin="383,24,0,0" VerticalAlignment="Top" Width="33" Source="trash+bin+icon-1320086460670911435.png" RenderTransformOrigin="0.838,0.834"/>
+        <Image x:Name="imgLoeschen" HorizontalAlignment="Left" Height="27" Margin="383,24,0,0" VerticalAlignment="Top" Width="33" Source="trash+bin+icon-1320086460670911435.png" RenderTransformOrigin="0.838,0.834" MouseDown="imgLoeschen_MouseDown"/>
+        <Image x:Name="imgZurueck" HorizontalAlignment="Left" Height="76" Margin="10,10,0,0" VerticalAlignment="Top" Width="54" Source="768px-Circle_arrow_left_font_awesome.svg.png" RenderTransformOrigin="0.778,0.566" MouseDown="imgZurueck_MouseDown"/>
     </Grid>
 </UserControl>

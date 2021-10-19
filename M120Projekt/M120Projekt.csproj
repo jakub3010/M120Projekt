@@ -63,21 +63,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Resource1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource1.resx</DependentUpon>
+    <Compile Include="Gesetzliste.xaml.cs">
+      <DependentUpon>Gesetzliste.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resource2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource2.resx</DependentUpon>
+    <Compile Include="Parlament.xaml.cs">
+      <DependentUpon>Parlament.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Resource3.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource3.resx</DependentUpon>
+    <Compile Include="Parteienuebersicht.xaml.cs">
+      <DependentUpon>Parteienuebersicht.xaml</DependentUpon>
     </Compile>
+    <Page Include="Gesetzliste.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Gesetzverwaltung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +98,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Parlament.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Parteienuebersicht.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Migrations\Configuration.cs" />
@@ -120,18 +126,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resource1.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource2.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource2.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resource3.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource3.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="Data\Klassendiagramm.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -147,6 +141,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="trash+bin+icon-1320086460670911435.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\768px-Circle_arrow_left_font_awesome.svg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="768px-Circle_arrow_left_font_awesome.svg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

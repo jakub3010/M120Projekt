@@ -5,8 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:M120Projekt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="644" Width="706.161" Closing="Window_Closing">
+        Title="MainWindow" Height="644" Width="706.161">
     <Grid>
-        <local:Gesetzverwaltung HorizontalAlignment="Left" Height="534" Margin="80,69,0,0" VerticalAlignment="Top" Width="494"/>
+        <local:Gesetzverwaltung HorizontalAlignment="Left" Height="536" Margin="204,61,0,0" VerticalAlignment="Top" Width="494" Loaded="Gesetzverwaltung_Loaded"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="302" Margin="10,89,0,0" Stroke="Black" VerticalAlignment="Top" Width="158"/>
+        <Label Content="Navigation" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,100,0,0"  FontSize="26" Height="47" Width="140"/>
+        <Button Content="Parlament" HorizontalAlignment="Left" Margin="20,152,0,0" VerticalAlignment="Top" Width="140" Height="34" FontSize="13"/>
+        <Button Content="Parteien" HorizontalAlignment="Left" Margin="20,212,0,0" VerticalAlignment="Top" Width="140" Height="34" FontSize="13"/>
+        <Button Content="Gesetze" HorizontalAlignment="Left" Margin="20,272,0,0" VerticalAlignment="Top" Width="140" Height="34" FontSize="13"/>
+        <Button Content="Programm beenden" HorizontalAlignment="Left" Margin="20,340,0,0" VerticalAlignment="Top" Width="140" Height="34" FontWeight="Bold" FontSize="13"/>
     </Grid>
 </Window>

@@ -10,16 +10,10 @@ namespace M120Projekt
         public MainWindow()
         {
             InitializeComponent();
-            // Aufruf diverse APIDemo Methoden
-            APIDemo.DemoACreate();
-            APIDemo.DemoACreateKurz();
-            APIDemo.DemoARead();
-            APIDemo.DemoAUpdate();
-            APIDemo.DemoARead();
-            //APIDemo.DemoADelete();
+
         }
 
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void Gesetzverwaltung_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
