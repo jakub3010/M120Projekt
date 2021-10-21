@@ -20,94 +20,133 @@ namespace M120Projekt
     /// </summary>
     public partial class Gesetzverwaltung : UserControl
     {
-        public Gesetzverwaltung()
+        public Gesetzverwaltung(MainWindow parent, long id)
         {
+            this.parent = parent;
             InitializeComponent();
-            istNeu();
-            
-        }
-        public enum Zustand
-        {
-            neuesGesetz,
-            gesetzInfo,
-            bestaetigungOffen,
-            loeschVerifizierung,
-            speichernOderMenu,
-            speichernOffen,
-            speichernOderZurueck,
-        }
-        public Zustand meinZustand = Zustand.neuesGesetz;
-        private Gesetzliste gesetzliste = new Gesetzliste();
-        private Parlament parlament = new Parlament();
-        private void istNeu()
-        {
-            if (!gesetzliste.neuesGesetz)
+            Console.WriteLine(parent.meinZustand);
+            if (parent.meinZustand == MainWindow.Zustand.gesetzInfo)
             {
-                meinZustand = Zustand.gesetzInfo;
+                gesetz = Data.Gesetz.LesenID(id);
+                imgLoeschen.Visibility = Visibility.Visible;
+            } else
+            {
+                gesetz = new Data.Gesetz();
+                neuesGesetz = true;
+                imgLoeschen.Visibility = Visibility.Hidden;
+            }
+            dpBehandlung.SelectedDate = gesetz.Behandlungsdatum;
+            sliLinksRechts.Value = gesetz.Links_Rechts;
+            cbSektor.Text = gesetz.Sektor;
+            txtBeschreibung.Text = gesetz.Beschreibung;
+            txtTitel.Text = gesetz.Titel;
+            lblMehrheit.Content = "";
+        }
+        private MainWindow parent;
+        private Data.Gesetz gesetz;
+        private Parlament parlament = new Parlament();
+        public bool mehrheit;
+        public DateTime date;
+        private bool changed;
+        private bool neuesGesetz;
+
+        private void changedValue()
+        {
+            if (changed){
+                if (cbSektor.Text != null && txtBeschreibung.Text != null && txtTitel.Text != null && dpBehandlung.SelectedDate != null)
+                {
+                    parent.meinZustand = MainWindow.Zustand.bestaetigungOffen;
+                    btnConfirm.IsEnabled = true;
+                }
             }
         }
-        private List<string> textFelder = new List<string>();
+
         private void txtTitel_TextChanged(object sender, TextChangedEventArgs e)
         {
-            meinZustand = Zustand.bestaetigungOffen;
+            changed = true;
+            changedValue();
         }
 
 
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            if (parlament.mehrheit) {
+            if (gesetz.istMehrheitsfaehig) {
                 lblMehrheit.Content = "JA";
             } else {
                 lblMehrheit.Content = "NEIN";
             };
-            meinZustand = Zustand.speichernOffen;
+            parent.meinZustand = MainWindow.Zustand.speichernOffen;
+            btnErfassen.IsEnabled = true;
+            btnConfirm.IsEnabled = false;
         }
 
         private void txtBeschreibung_TextChanged(object sender, TextChangedEventArgs e)
         {
-            meinZustand = Zustand.bestaetigungOffen;
-
+            changed = true;
+            changedValue();
         }
 
         private void cbSektor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            meinZustand = Zustand.bestaetigungOffen;
+            changed = true;
+            changedValue();
         }
 
         private void sliLinksRechts_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            meinZustand = Zustand.bestaetigungOffen;
+            changedValue();
+            changed = true;
         }
 
         private void btnDeleteContent_Click(object sender, RoutedEventArgs e)
         {
-            dpBehandlung.Text = "";
+            dpBehandlung.SelectedDate = null;
             sliLinksRechts.Value = 5;
             cbSektor.Text = "";
             txtBeschreibung.Text = "";
             txtTitel.Text = "";
             lblMehrheit.Content = "";
+            btnConfirm.IsEnabled = false;
         }
 
         private void btnErfassen_Click(object sender, RoutedEventArgs e)
         {
-
+            Gesetzliste gesetzliste = new Gesetzliste(parent);
+            gesetz.Titel = txtTitel.Text;
+            gesetz.Behandlungsdatum = date;
+            gesetz.Beschreibung = txtBeschreibung.Text;
+            gesetz.Sektor = cbSektor.Text;
+            gesetz.Links_Rechts = sliLinksRechts.Value;
+            gesetz.istMehrheitsfaehig = mehrheit;
+            if (neuesGesetz)
+            {
+                gesetz.Erstellen();
+                gesetzliste.gesetze.Add(gesetz);
+            } else {
+                gesetz.Aktualisieren();
+            }
+            parent.WechsleZuListenansicht();
         }
 
         private void imgZurueck_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            parent.WechsleZuListenansicht();
         }
 
         private void imgLoeschen_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            Data.Gesetz.LesenID(gesetz.GesetzID).Loeschen();
+            parent.WechsleZuListenansicht();
         }
 
         private void dpBehandlung_CalendarClosed(object sender, RoutedEventArgs e)
         {
-            meinZustand = Zustand.bestaetigungOffen;
+            if (dpBehandlung.SelectedDate.HasValue) {
+                date = dpBehandlung.SelectedDate.Value;
+            }
+            changed = true;
+            changedValue();
         }
     }
 }

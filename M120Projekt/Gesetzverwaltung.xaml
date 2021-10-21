@@ -26,10 +26,10 @@
         </ComboBox>
         <Label Content="Links/Rechts" HorizontalAlignment="Left" Margin="52,270,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Button x:Name="btnDeleteContent" Content="Eingaben löschen" HorizontalAlignment="Left" Margin="52,376,0,0" VerticalAlignment="Top" Width="164" Height="34" FontSize="18" TabIndex="6" Click="btnDeleteContent_Click"/>
-        <Button x:Name="btnConfirm" Content="Bestätigen" HorizontalAlignment="Left" Margin="234,376,0,0" VerticalAlignment="Top" Width="195" Height="34" FontSize="18" TabIndex="7" Click="btnConfirm_Click"/>
+        <Button x:Name="btnConfirm" Content="Bestätigen" HorizontalAlignment="Left" Margin="234,376,0,0" VerticalAlignment="Top" Width="195" Height="34" FontSize="18" TabIndex="7" Click="btnConfirm_Click" IsEnabled="False"/>
         <Label Content="Ist mehrheitsfähig?" HorizontalAlignment="Left" Margin="52,424,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Label x:Name="lblMehrheit" Content="" HorizontalAlignment="Center" Margin="100,425,10,0" FontSize="18"/>
-        <Button x:Name="btnErfassen" Content="Gesetz erfassen" HorizontalAlignment="Left" Margin="52,465,0,0" VerticalAlignment="Top" Width="377" Height="34" Grid.RowSpan="2" FontSize="18" TabIndex="8" Click="btnErfassen_Click"/>
+        <Label x:Name="lblMehrheit" Content=" " HorizontalAlignment="Center" Margin="100,425,10,0" FontSize="18"/>
+        <Button x:Name="btnErfassen" Content="Gesetz erfassen" HorizontalAlignment="Left" Margin="52,465,0,0" VerticalAlignment="Top" Width="377" Height="34" Grid.RowSpan="2" FontSize="18" TabIndex="8" Click="btnErfassen_Click" IsEnabled="False"/>
         <Label Content="links" HorizontalAlignment="Left" Margin="234,244,0,0" VerticalAlignment="Top"/>
         <Label Content="mitte" HorizontalAlignment="Left" Margin="312,244,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.395,0.577"/>
         <Label Content="rechts" HorizontalAlignment="Left" Margin="395,244,0,0" VerticalAlignment="Top"/>

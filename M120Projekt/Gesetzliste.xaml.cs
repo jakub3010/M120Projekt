@@ -20,16 +20,41 @@ namespace M120Projekt
     /// </summary>
     public partial class Gesetzliste : UserControl
     {
-        public Gesetzliste()
+        public List<Data.Gesetz> gesetze = new List<Data.Gesetz>();
+        private MainWindow parent;
+        private long gesetzId;
+        public Gesetzliste(MainWindow parent)
         {
             InitializeComponent();
-            //gesetzListe.ItemsSource = neuesGesetz;
+            this.parent = parent;
+            gesetzListe.ItemsSource = Data.Gesetz.LesenAlle();
+            // Neu anfügen
+            gesetzListe.CanUserAddRows = false;
+            // Sortieren
+            gesetzListe.CanUserSortColumns = true;
+            // Anzeigemodus
+            gesetzListe.IsReadOnly = true;
+            // Auswahlvarianten
+            gesetzListe.SelectionMode = DataGridSelectionMode.Single;
+            gesetzListe.SelectionMode = DataGridSelectionMode.Extended;
         }
-        public bool neuesGesetz = true; //true wenn "neues Gesetz" Button geklickt, false wenn auf bestehenden Datensatz gedrückt
 
-        private void gesetzListe_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnNeuesGesetz_Click(object sender, RoutedEventArgs e)
         {
+            parent.meinZustand = MainWindow.Zustand.neuesGesetz;
+            parent.WechsleZuEinzelansicht(gesetzId);
+        }
 
+        private void gesetzListe_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (gesetzListe.SelectedItem != null)
+            {
+                Data.Gesetz artikel = (Data.Gesetz) gesetzListe.SelectedItem;
+                gesetzId = artikel.GesetzID;
+                parent.meinZustand = MainWindow.Zustand.gesetzInfo;
+                parent.WechsleZuEinzelansicht(gesetzId);
+            }
+  
         }
     }
 }

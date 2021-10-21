@@ -8,7 +8,8 @@
     <Grid>
 
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="538" Margin="-6,-6,0,0" Stroke="Black" VerticalAlignment="Top" Width="474" />
-        <DataGrid x:Name="gesetzListe" HorizontalAlignment="Left" Height="441" Margin="23,36,0,0" VerticalAlignment="Top" Width="386" SelectionChanged="gesetzListe_SelectionChanged"/>
+        <DataGrid x:Name="gesetzListe" HorizontalAlignment="Left" Height="441" Margin="23,36,0,0" VerticalAlignment="Top" Width="386" MouseDoubleClick="gesetzListe_MouseDoubleClick"/>
+        <Button x:Name="btnNeuesGesetz" Content="Neues Gesetz erfassen" HorizontalAlignment="Left" Margin="64,482,0,0" VerticalAlignment="Top" Width="311" Height="32" Click="btnNeuesGesetz_Click"/>
 
 
     </Grid>

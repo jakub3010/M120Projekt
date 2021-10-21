@@ -18,7 +18,7 @@ namespace M120Projekt.Data
         [Required]
         public String Sektor { get; set; }
         [Required]
-        public Int64 Links_Rechts { get; set; }
+        public double Links_Rechts { get; set; }
         [Required]
         public DateTime Behandlungsdatum { get; set; }
         [Required]
