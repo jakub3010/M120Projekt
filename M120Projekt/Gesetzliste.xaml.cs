@@ -23,6 +23,16 @@ namespace M120Projekt
         public List<Data.Gesetz> gesetze = new List<Data.Gesetz>();
         private MainWindow parent;
         private long gesetzId;
+        private const string _format = "dd-MM-yy";
+
+        public object convert(object value)
+        {
+            DateTime date = (DateTime)value;
+
+            return date.ToString(_format);
+        }
+
+
         public Gesetzliste(MainWindow parent)
         {
             InitializeComponent();
@@ -38,6 +48,7 @@ namespace M120Projekt
             gesetzListe.SelectionMode = DataGridSelectionMode.Single;
             gesetzListe.SelectionMode = DataGridSelectionMode.Extended;
         }
+
 
         private void btnNeuesGesetz_Click(object sender, RoutedEventArgs e)
         {

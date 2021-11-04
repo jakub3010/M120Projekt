@@ -5,11 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:M120Projekt"
              mc:Ignorable="d" Height="535.95" Width="444.5">
-    <Grid>
 
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="538" Margin="-6,-6,0,0" Stroke="Black" VerticalAlignment="Top" Width="474" />
-        <DataGrid x:Name="gesetzListe" HorizontalAlignment="Left" Height="441" Margin="23,36,0,0" VerticalAlignment="Top" Width="386" MouseDoubleClick="gesetzListe_MouseDoubleClick"/>
-        <Button x:Name="btnNeuesGesetz" Content="Neues Gesetz erfassen" HorizontalAlignment="Left" Margin="64,482,0,0" VerticalAlignment="Top" Width="311" Height="32" Click="btnNeuesGesetz_Click"/>
+    <Grid Margin="0,0,0,61">
+
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Margin="-6,-6,0,0" Stroke="Black" Width="450" />
+        <DataGrid x:Name="gesetzListe" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="341" Margin="23,36,0,0" VerticalAlignment="Top" Width="386" MouseDoubleClick="gesetzListe_MouseDoubleClick" AutoGenerateColumns ="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Titel}" Header="Titel" Width="40"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Beschreibung}" Header="Beschreibung" Width="100"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Links_Rechts}" Header="Links-Rechts" Width="80"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Sektor}" Header="Sektor" Width="80"/>
+                <DataGridCheckBoxColumn IsReadOnly="True" Binding="{Binding istMehrheitsfaehig}" Header="Mehrheit?" Width="66"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding Behandlungsdatum}" Header="Behandlungsdatum"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnNeuesGesetz" Content="Neues Gesetz erfassen" HorizontalAlignment="Left" Margin="64,412,0,0" VerticalAlignment="Top" Width="311" Height="32" Click="btnNeuesGesetz_Click"/>
 
 
     </Grid>
