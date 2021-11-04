@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:M120Projekt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="644" Width="706.161">
+        Title="MainWindow" Height="644" Width="706.161" WindowStartupLocation="CenterScreen">
     <Grid>
         <ScrollViewer x:Name="Platzhalter" Margin="198,68,28,50"/>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="302" Margin="18,68,0,0" Stroke="Black" VerticalAlignment="Top" Width="158"/>

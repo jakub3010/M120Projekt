@@ -18,9 +18,8 @@ namespace M120Projekt
             gesetzInfo,
             bestaetigungOffen,
             loeschVerifizierung,
-            speichernOderMenu,
+            speichern,
             speichernOffen,
-            speichernOderZurueck,
             zurueckZuGesetzliste
         }
         public Zustand meinZustand = Zustand.neuesGesetz;
@@ -31,7 +30,23 @@ namespace M120Projekt
 
         private void btnGesetzliste_Click(object sender, RoutedEventArgs e)
         {
-            Platzhalter.Content = new Gesetzliste(this);
+            if (meinZustand == Zustand.bestaetigungOffen || meinZustand == Zustand.speichernOffen)
+            {
+                MessageBoxResult result = MessageBox.Show("Wollen Sie die Änderungen verwerfen?", "Zu Gesetzliste", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        Platzhalter.Content = new Gesetzliste(this);
+                        meinZustand = Zustand.zurueckZuGesetzliste;
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
+            } else
+            {
+                Platzhalter.Content = new Gesetzliste(this);
+            }
+            
         }
 
         private void btnParteien_Click(object sender, RoutedEventArgs e)
@@ -40,7 +55,23 @@ namespace M120Projekt
         }
         public void WechsleZuListenansicht()
         {
-            Platzhalter.Content = new Gesetzliste(this);
+            if (meinZustand == Zustand.bestaetigungOffen || meinZustand == Zustand.speichernOffen)
+            {
+                MessageBoxResult result = MessageBox.Show("Wollen Sie die Änderungen verwerfen?", "Zu Gesetzliste", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        Platzhalter.Content = new Gesetzliste(this);
+                        meinZustand = Zustand.zurueckZuGesetzliste;
+                        break;
+                    case MessageBoxResult.No:
+                        break;
+                }
+            }
+            else
+            {
+                Platzhalter.Content = new Gesetzliste(this);
+            }
         }
         public void WechsleZuEinzelansicht(long artikelId)
         {
