@@ -14,10 +14,10 @@
         <Label Content="Behandlungsdatum" HorizontalAlignment="Left" Margin="52,315,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.506,1.118"/>
         <DatePicker x:Name="dpBehandlung" HorizontalAlignment="Left" Margin="234,315,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.903,0.25" Width="195" TabIndex="5" IsTabStop="True" CalendarClosed="dpBehandlung_CalendarClosed"/>
         <Label Content="Beschreibung" HorizontalAlignment="Left" Margin="52,127,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="txtBeschreibung" HorizontalAlignment="Left" Height="66" Margin="234,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195" FontSize="18" TabIndex="2" TextChanged="txtBeschreibung_TextChanged"/>
-        <Label Content="Sektor" HorizontalAlignment="Left" Margin="52,204,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <Slider x:Name="sliLinksRechts" HorizontalAlignment="Left" Margin="234,270,0,0" VerticalAlignment="Top" Height="22" Width="195" FontSize="18" TabIndex="4" ValueChanged="sliLinksRechts_ValueChanged" Value="5"/>
-        <ComboBox x:Name="cbSektor" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="234,208,0,298" FontSize="18" Width="195" TabIndex="3" SelectionChanged="cbSektor_SelectionChanged">
+        <TextBox x:Name="txtBeschreibung" HorizontalAlignment="Left" Height="59" Margin="234,135,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="195" FontSize="18" TabIndex="2" TextChanged="txtBeschreibung_TextChanged"/>
+        <Label Content="Sektor" HorizontalAlignment="Left" Margin="52,214,0,0" VerticalAlignment="Top" FontSize="18" RenderTransformOrigin="0.508,1.029"/>
+        <Slider x:Name="sliLinksRechts" HorizontalAlignment="Left" Margin="234,270,0,0" VerticalAlignment="Top" Height="22" Width="195" FontSize="18" TabIndex="4" ValueChanged="sliLinksRechts_ValueChanged" LargeChange="0" Maximum="5" Minimum="-5"/>
+        <ComboBox x:Name="cbSektor" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="234,214,0,0" FontSize="18" Width="195" TabIndex="3" SelectionChanged="cbSektor_SelectionChanged" SelectedIndex="-1">
             <ComboBoxItem Content="Klima und Umwelt"/>
             <ComboBoxItem Content="Aussenpolitik"/>
             <ComboBoxItem Content="Innenpolitik"/>
@@ -35,5 +35,10 @@
         <Label Content="rechts" HorizontalAlignment="Left" Margin="395,244,0,0" VerticalAlignment="Top"/>
         <Image x:Name="imgLoeschen" HorizontalAlignment="Left" Height="27" Margin="383,24,0,0" VerticalAlignment="Top" Width="33" Source="trash+bin+icon-1320086460670911435.png" RenderTransformOrigin="0.838,0.834" MouseDown="imgLoeschen_MouseDown"/>
         <Image x:Name="imgZurueck" HorizontalAlignment="Left" Height="76" Margin="10,10,0,0" VerticalAlignment="Top" Width="54" Source="768px-Circle_arrow_left_font_awesome.svg.png" RenderTransformOrigin="0.778,0.566" MouseDown="imgZurueck_MouseDown"/>
+        <Label x:Name="maxTitel" Content="Maximallänge = 30 Zeichen" HorizontalAlignment="Left" Margin="234,64,0,0" VerticalAlignment="Top" Width="195" Foreground="#FFDE2525" Visibility="Hidden"/>
+        <Label x:Name="maxDesc" Content="Maximallänge = 400 Zeichen" HorizontalAlignment="Left" Margin="234,114,0,0" VerticalAlignment="Top" Width="195" Foreground="#FFDE2525" Visibility="Hidden"/>
+        <Label x:Name="minTitel" Content="Minimallänge = 5 Zeichen" HorizontalAlignment="Left" Margin="234,64,0,0" VerticalAlignment="Top" Width="195" Foreground="#FFDE2525" Visibility="Hidden"/>
+        <Label x:Name="minDesc" Content="Minimallänge = 10 Zeichen" HorizontalAlignment="Left" Margin="234,114,0,0" VerticalAlignment="Top" Width="195" Foreground="#FFDE2525" Visibility="Hidden"/>
+        <Label x:Name="valuesector" Content="Sie müssen ein Sektor auswählen" HorizontalAlignment="Left" Margin="234,190,0,0" VerticalAlignment="Top" Width="195" Foreground="#FFDE2525" Visibility="Hidden"/>
     </Grid>
 </UserControl>

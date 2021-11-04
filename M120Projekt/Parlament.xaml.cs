@@ -23,7 +23,22 @@ namespace M120Projekt
         public Parlament()
         {
             InitializeComponent();
+            parteien = erstelleParteien();
         }
-        public bool mehrheit;
+        public List<Partei> parteien;
+        private List<Partei> erstelleParteien()
+        {
+            List <Partei> parteiListe = new List<Partei>();
+            parteiListe.Add(new Partei("PdA",-5,10));
+            parteiListe.Add(new Partei("Grüne", -3, 40));
+            parteiListe.Add(new Partei("SP", -2, 45));
+            parteiListe.Add(new Partei("EVP", -1, 10));
+            parteiListe.Add(new Partei("glp", 0, 15));
+            parteiListe.Add(new Partei("Mitte", 1, 20));
+            parteiListe.Add(new Partei("FDP", 3, 15));
+            parteiListe.Add(new Partei("SVP", 4, 40));
+            parteiListe.Add(new Partei("EDU", 5, 5));
+            return parteiListe;
+        }
     }
 }

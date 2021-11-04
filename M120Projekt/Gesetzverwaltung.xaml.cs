@@ -24,7 +24,6 @@ namespace M120Projekt
         {
             this.parent = parent;
             InitializeComponent();
-            Console.WriteLine(parent.meinZustand);
             if (parent.meinZustand == MainWindow.Zustand.gesetzInfo)
             {
                 gesetz = Data.Gesetz.LesenID(id);
@@ -41,29 +40,75 @@ namespace M120Projekt
             txtBeschreibung.Text = gesetz.Beschreibung;
             txtTitel.Text = gesetz.Titel;
             lblMehrheit.Content = "";
+            btnConfirm.IsEnabled = false;
+            maxDesc.Visibility = Visibility.Hidden;
+            maxTitel.Visibility = Visibility.Hidden;
+            parent.meinZustand = MainWindow.Zustand.gesetzInfo;
         }
         private MainWindow parent;
         private Data.Gesetz gesetz;
-        private Parlament parlament = new Parlament();
         public bool mehrheit;
         public DateTime date;
-        private bool changed;
         private bool neuesGesetz;
 
         private void changedValue()
         {
-            if (changed){
-                if (cbSektor.Text != null && txtBeschreibung.Text != null && txtTitel.Text != null && dpBehandlung.SelectedDate != null)
+            txtTitel.Background = Brushes.White;
+            maxTitel.Visibility = Visibility.Hidden;
+            minTitel.Visibility = Visibility.Hidden;
+            txtBeschreibung.Background = Brushes.White;
+            maxDesc.Visibility = Visibility.Hidden;
+            minDesc.Visibility = Visibility.Hidden;
+            valuesector.Visibility = Visibility.Hidden;
+            parent.meinZustand = MainWindow.Zustand.bestaetigungOffen;
+            btnConfirm.IsEnabled = true;
+            btnErfassen.IsEnabled = false;
+               
+                if (txtTitel.Text.Length > 30)
                 {
-                    parent.meinZustand = MainWindow.Zustand.bestaetigungOffen;
-                    btnConfirm.IsEnabled = true;
+                    txtTitel.Background = Brushes.Red;
+                    maxTitel.Visibility = Visibility.Visible;
+                    btnConfirm.IsEnabled = false;
+                    btnErfassen.IsEnabled = false;
+
                 }
+                else if (txtTitel.Text.Length < 5)
+                {
+                    txtTitel.Background = Brushes.Red;
+                    minTitel.Visibility = Visibility.Visible;
+                    btnConfirm.IsEnabled = false;
+                    btnErfassen.IsEnabled = false;
+
+                }
+                if (cbSektor.SelectedIndex<0)
+                {
+                    valuesector.Visibility = Visibility.Visible;
+                    btnConfirm.IsEnabled = false;
+                    btnErfassen.IsEnabled = false;
+
+                }
+
+                if (txtBeschreibung.Text.Length > 400)
+                {
+                    txtBeschreibung.Background = Brushes.Red;
+                    maxDesc.Visibility = Visibility.Visible;
+                    btnConfirm.IsEnabled = false;
+                    btnErfassen.IsEnabled = false;
+                }
+                else if (txtBeschreibung.Text.Length < 10)
+                {
+                    txtBeschreibung.Background = Brushes.Red;
+                    minDesc.Visibility = Visibility.Visible;
+                    btnConfirm.IsEnabled = false;
+                    btnErfassen.IsEnabled = false;
+
+                
+
             }
         }
 
         private void txtTitel_TextChanged(object sender, TextChangedEventArgs e)
         {
-            changed = true;
             changedValue();
         }
 
@@ -71,7 +116,8 @@ namespace M120Projekt
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            if (gesetz.istMehrheitsfaehig) {
+            pruefeMehrheitsfaehigkeit();
+            if (mehrheit) {
                 lblMehrheit.Content = "JA";
             } else {
                 lblMehrheit.Content = "NEIN";
@@ -81,33 +127,54 @@ namespace M120Projekt
             btnConfirm.IsEnabled = false;
         }
 
+        private void pruefeMehrheitsfaehigkeit()
+        {
+            Parlament parlament = new Parlament();
+            double gesetzwert = sliLinksRechts.Value;
+            int jaStimmen = 0;
+            foreach (Partei partei in parlament.parteien)
+            {
+                if(partei.linksRechts < gesetzwert+3 && partei.linksRechts > gesetzwert-3)
+                {
+                    jaStimmen+=partei.abgeordnete;
+                }
+            }
+            if (jaStimmen > 100)
+            {
+                mehrheit = true;
+            } else
+            {
+                mehrheit = false;
+            }
+
+        }
+
         private void txtBeschreibung_TextChanged(object sender, TextChangedEventArgs e)
         {
-            changed = true;
             changedValue();
+            
         }
 
         private void cbSektor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            changed = true;
             changedValue();
         }
 
         private void sliLinksRechts_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             changedValue();
-            changed = true;
         }
 
         private void btnDeleteContent_Click(object sender, RoutedEventArgs e)
         {
             dpBehandlung.SelectedDate = null;
             sliLinksRechts.Value = 5;
-            cbSektor.Text = "";
+            cbSektor.SelectedIndex = -1;
             txtBeschreibung.Text = "";
             txtTitel.Text = "";
             lblMehrheit.Content = "";
             btnConfirm.IsEnabled = false;
+            btnErfassen.IsEnabled = false;
         }
 
         private void btnErfassen_Click(object sender, RoutedEventArgs e)
@@ -126,6 +193,7 @@ namespace M120Projekt
             } else {
                 gesetz.Aktualisieren();
             }
+            parent.meinZustand = MainWindow.Zustand.speichern;
             parent.WechsleZuListenansicht();
         }
 
@@ -136,8 +204,18 @@ namespace M120Projekt
 
         private void imgLoeschen_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Data.Gesetz.LesenID(gesetz.GesetzID).Loeschen();
-            parent.WechsleZuListenansicht();
+
+            MessageBoxResult result = MessageBox.Show("Wollen Sie dieses Gesetz entfernen?", "Gesetz Löschen", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    Data.Gesetz.LesenID(gesetz.GesetzID).Loeschen();
+                    parent.WechsleZuListenansicht();
+                    break;
+                case MessageBoxResult.No:
+                    break;
+            }
+            
         }
 
         private void dpBehandlung_CalendarClosed(object sender, RoutedEventArgs e)
@@ -145,7 +223,6 @@ namespace M120Projekt
             if (dpBehandlung.SelectedDate.HasValue) {
                 date = dpBehandlung.SelectedDate.Value;
             }
-            changed = true;
             changedValue();
         }
     }

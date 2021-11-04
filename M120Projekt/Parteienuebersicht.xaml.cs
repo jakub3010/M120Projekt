@@ -18,11 +18,22 @@ namespace M120Projekt
     /// <summary>
     /// Interaktionslogik für Parteien.xaml
     /// </summary>
-    public partial class Parteien : UserControl
+    public partial class Partei : UserControl
     {
-        public Parteien()
+        public Partei()
         {
             InitializeComponent();
+        }
+        static Random rnd = new Random();
+        public String name;
+        public int linksRechts;
+        public int abgeordnete;
+
+        public Partei(String name, int linksRechts, int abgeordnete)
+        {
+            this.name = name;
+            this.linksRechts = linksRechts;
+            this.abgeordnete = abgeordnete;
         }
     }
 }
