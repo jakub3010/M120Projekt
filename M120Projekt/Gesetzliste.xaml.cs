@@ -67,5 +67,16 @@ namespace M120Projekt
             }
   
         }
+
+        private void gesetzliste_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.O)
+            {
+                Data.Gesetz artikel = (Data.Gesetz)gesetzListe.SelectedItem;
+                gesetzId = artikel.GesetzID;
+                parent.meinZustand = MainWindow.Zustand.gesetzInfo;
+                parent.WechsleZuEinzelansicht(gesetzId);
+            }
+        }
     }
 }

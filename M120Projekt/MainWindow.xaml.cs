@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.ComponentModel;
 
 namespace M120Projekt
 {
@@ -76,6 +77,24 @@ namespace M120Projekt
         public void WechsleZuEinzelansicht(long artikelId)
         {
             Platzhalter.Content = new Gesetzverwaltung(this, artikelId);
+        }
+
+        private void btnBeenden_Click(object sender, RoutedEventArgs eventArgs)
+        {
+            Close();
+        }
+ 
+
+        private void OnClosing(object sender, CancelEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Wollen Sie das Programm beenden", "Programm beenden", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No);
+            if (result != MessageBoxResult.Yes)
+            {
+                e.Cancel = true;
+            } else
+            {
+                e.Cancel = false;
+            }
         }
     }
 }

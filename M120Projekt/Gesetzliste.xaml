@@ -9,7 +9,7 @@
     <Grid Margin="0,0,0,61">
 
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Margin="-6,-6,0,0" Stroke="Black" Width="450" />
-        <DataGrid x:Name="gesetzListe" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="341" Margin="23,36,0,0" VerticalAlignment="Top" Width="386" MouseDoubleClick="gesetzListe_MouseDoubleClick" AutoGenerateColumns ="False">
+        <DataGrid x:Name="gesetzListe" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="341" Margin="23,36,0,0" VerticalAlignment="Top" Width="386" MouseDoubleClick="gesetzListe_MouseDoubleClick" KeyDown="gesetzliste_KeyDown" AutoGenerateColumns ="False">
             <DataGrid.Columns>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Titel}" Header="Titel" Width="40"/>
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Beschreibung}" Header="Beschreibung" Width="100"/>
@@ -19,7 +19,10 @@
                 <DataGridTextColumn IsReadOnly="True" Binding="{Binding Behandlungsdatum}" Header="Behandlungsdatum"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="btnNeuesGesetz" Content="Neues Gesetz erfassen" HorizontalAlignment="Left" Margin="64,412,0,0" VerticalAlignment="Top" Width="311" Height="32" Click="btnNeuesGesetz_Click"/>
+        <Button TabIndex="2"  x:Name="btnNeuesGesetz" HorizontalAlignment="Left" Margin="64,412,0,0" VerticalAlignment="Top" Width="311" Height="32" Click="btnNeuesGesetz_Click">
+            <AccessText>_Neues Gesetz erfassen</AccessText>
+        </Button>
+        <Label x:Name="lblOTaste" Content="Wählen Sie ein Gesetz und drücken Sie die &quot;O&quot;-Taste um es zu öffnen" HorizontalAlignment="Left" Margin="23,382,0,0" VerticalAlignment="Top" Width="386"/>
 
 
     </Grid>
