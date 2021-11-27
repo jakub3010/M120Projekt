@@ -210,6 +210,7 @@ namespace M120Projekt
             {
                 case MessageBoxResult.Yes:
                     Data.Gesetz.LesenID(gesetz.GesetzID).Loeschen();
+                    parent.meinZustand = MainWindow.Zustand.loeschVerifizierung;
                     parent.WechsleZuListenansicht();
                     break;
                 case MessageBoxResult.No:
